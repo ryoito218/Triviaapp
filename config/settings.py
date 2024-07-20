@@ -156,11 +156,11 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 
 # ログイン後のリダイレクト先を指定
-# from django.urls import reverse_lazy
-# LOGIN_REDIRECT_URL = reverse_lazy('main:due_date_list')
+from django.urls import reverse_lazy
+LOGIN_REDIRECT_URL = reverse_lazy('main:home')
 
 # ログアウト後のリダイレクト先を指定
-# ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy("account_login")
+ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy("account_login")
 
 # メールアドレスが確認済みである必要がある
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
