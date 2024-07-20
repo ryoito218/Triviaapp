@@ -44,7 +44,12 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'accounts',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -123,7 +128,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -149,11 +155,11 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 
 # ログイン後のリダイレクト先を指定
-from django.urls import reverse_lazy
-LOGIN_REDIRECT_URL = reverse_lazy('main:due_date_list')
+# from django.urls import reverse_lazy
+# LOGIN_REDIRECT_URL = reverse_lazy('main:due_date_list')
 
 # ログアウト後のリダイレクト先を指定
-ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy("account_login")
+# ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy("account_login")
 
 # メールアドレスが確認済みである必要がある
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"

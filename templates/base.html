@@ -2,10 +2,23 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% include "css.html" %}
+    
+    <title>{% block title %}{% endblock title %}</title>
+
 </head>
-<body>
-    {% block content %}
-    {% endblock %}
+<body style="min-height: 100vh;">
+    {% include "nav.html" %}
+
+    {% include "messages.html" %}
+
+    {% block content %} 
+    {% endblock content %}
+    
+    {% include "footer.html" %}
+    {% include "js.html" %}
 </body>
 </html>

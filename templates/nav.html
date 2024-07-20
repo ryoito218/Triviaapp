@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        {#<a class="navbar-brand" href="{% url 'main:due_date_list' %}">APP</a>#}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                {#<li class="nav-item"><a class="nav-link" href="{% url 'main:due_date_list' %}">締切日一覧</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'main:due_date_create' %}">作成</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'main:profile' request.user.id %}">Profile</a></li>#}
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="btn btn-danger" href="{% url 'account_logout' %}">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a class="btn btn-primary" href="{% url 'account_login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
