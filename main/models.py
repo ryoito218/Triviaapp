@@ -8,6 +8,7 @@ class Post(models.Model):
     content = models.TextField(blank=True, null=True)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    like = models.ManyToManyField(User, related_name='related_post', blank=True)
 
     create_at = models.DateTimeField()
     update_at = models.DateTimeField()
