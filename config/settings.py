@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'accounts',
 ]
 
@@ -124,3 +128,37 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 認証用設定
+AUTH_USER_MODEL = 'accounts.User'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+# ユーザーネームは使わない
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USERNAME_REQUIRED = False 
+
+# 認証にはメールアドレスを使用する
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+
+# ログイン後のリダイレクト先を指定
+from django.urls import reverse_lazy
+LOGIN_REDIRECT_URL = reverse_lazy('main:due_date_list')
+
+# ログアウト後のリダイレクト先を指定
+ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy("account_login")
+
+# メールアドレスが確認済みである必要がある
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+# 即ログアウトとする
+ACCOUNT_LOGOUT_ON_GET = True
+
+# 本番環境では消す
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
