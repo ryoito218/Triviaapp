@@ -1,7 +1,11 @@
 from typing import Any
+from django.forms import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.urls import reverse_lazy
 from .models import Post
+from .forms import PostCreateForm
 
 
 class HomeView(TemplateView):
@@ -32,3 +36,15 @@ class MyPageView(ListView):
         user = self.request.user
         user_posts = Post.objects.filter(user=user)
         return user_posts
+    
+class TriviaCreateView(CreateView):
+    model = Post
+    template_name = "main/create.html"
+    form_class = PostCreateForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('main:mypage')

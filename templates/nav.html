@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
-                {#<li class="nav-item"><a class="nav-link" href="{% url 'main:due_date_list' %}">締切日一覧</a></li>#}
+                <li class="nav-item"><a class="nav-link" href="{% url 'main:mypage' %}">マイページ</a></li>
                 {#<li class="nav-item"><a class="nav-link" href="{% url 'main:due_date_create' %}">作成</a></li>#}
                 {#<li class="nav-item"><a class="nav-link" href="{% url 'main:profile' request.user.id %}">Profile</a></li>#}
                 {% endif %}

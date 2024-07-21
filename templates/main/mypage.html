@@ -5,6 +5,7 @@
 {% block content %}
 <div class="container mt-3">
     <h2>マイページ</h2>
+    <div><a class="btn btn-primary my-3" href="{% url 'main:trivia-create' %}">投稿</a></div>
     {% for object in object_list %}
         <div class="card my-3">
             <div class="card-body">
