@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db.models.signals import post_save
+from datetime import datetime
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
@@ -65,3 +67,23 @@ class User(AbstractBaseUser):
     
     def has_module_perms(self, app_label):
         return self.is_superuser
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=255)
+    bio = models.TextField(blank=True, null=True)
+    create_at = models.DateTimeField()
+    update_at = models.DateTimeField()
+
+    def __str__(self):
+        return self.username
+    
+def post_user_created(sender, instance, created, **kwargs):
+    if created:
+        profile_obj = Profile(user=instance)
+        profile_obj.username = instance.email.split("@")[0]
+        profile_obj.create_at = datetime.now()
+        profile_obj.update_at = datetime.now()
+        profile_obj.save()
+
+post_save.connect(post_user_created, sender=User)
