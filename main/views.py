@@ -1,6 +1,6 @@
 from typing import Any
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 from .models import Post
 
 
@@ -9,14 +9,18 @@ class HomeView(TemplateView):
 
 class TriviaListView(ListView):
     template_name = "main/trivia_list.html"
-    model = Post
 
     def get_queryset(self):
-        prefecture = self.kwargs['prefecture']
+        prefecture = self.kwargs["prefecture"]
         trivias = Post.objects.filter(prefecture=prefecture)
         return trivias
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['prefecture'] = self.kwargs['prefecture']
+        context["prefecture"] = self.kwargs["prefecture"]
         return context
+    
+class TriviaDetailView(DetailView):
+    template_name = "main/trivia_detail.html"
+    model = Post
+
