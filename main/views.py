@@ -1,8 +1,9 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Post
-from .forms import PostCreateForm
+from .forms import PostCreateForm, PostUpdateForm
 
 
 class HomeView(TemplateView):
@@ -45,3 +46,20 @@ class TriviaCreateView(LoginRequiredMixin, CreateView):
     
     def get_success_url(self):
         return reverse_lazy('main:mypage')
+
+class TriviaUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+    model = Post
+    template_name = "main/update.html"
+    form_class = PostUpdateForm
+    success_message = "投稿を更新しました"
+
+    def get_success_url(self):
+        return reverse_lazy('main:trivia-detail', kwargs={'pk': self.object.id})
+    
+    def get_success_message(self, cleaned_data):
+        return f"{cleaned_data.get('title')}を更新しました"
+    
+    def test_func(self, **kwargs):
+        id = self.kwargs["pk"]
+        post = Post.objects.get(id=id)
+        return (post.user == self.request.user)

@@ -10,5 +10,9 @@
     <p>{{object.content}}</p>
     <p>{{object.create_at}}</p>
     <p>{{object.update_at}}</p>
+    
+    {% if object.user == request.user %}
+        <a href="{% url 'main:trivia-update' object.id %}" class="btn btn-secondary ms-3" tabindex="-1" role="button" aria-disabled="true">編集</a>
+    {% endif %}
 </div>
 {% endblock %}

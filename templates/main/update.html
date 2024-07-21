@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}更新{% endblock %}
+
+{% block content %}
+<div class="container my-3">
+    <h2>更新</h2>
+    <div class="container my-3" style="max-width: 700;">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="form-control btn btn-primary" type="submit" type="submit" value="更新">
+        </form>
+    </div>
+</div>
+{% endblock %}
