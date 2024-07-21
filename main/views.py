@@ -135,3 +135,59 @@ class TriviaLikeView(LoginRequiredMixin, View):
         else:
             related_post.like.add(self.request.user)
         return redirect("main:trivia-detail", related_post.pk)
+
+class TriviaLikeListView(LoginRequiredMixin, ListView):
+    template_name = "main/like-list.html"
+    model = Post
+
+    def get_queryset(self):
+        query = super().get_queryset()
+
+        query = query.filter(like=self.request.user)
+
+        keyword = self.request.GET.get("keyword", None)
+        category = self.request.GET.get("category", None)
+        
+        if keyword:
+            query = query.filter(title__icontains=keyword)
+        
+        if category == "未選択":
+            pass
+        elif category:
+            query = query.filter(category=category)
+        
+        return query
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context["keyword"] = self.request.GET.get("keyword", "")
+
+        category = self.request.GET.get("category", "")
+
+        if category == "地理":
+            context["geography"] = True
+        elif category == "歴史":
+            context["history"] = True
+        elif category == "人物":
+            context["person"] = True
+        elif category == "自然":
+            context["nature"] = True
+        elif category == "伝統":
+            context["tradition"] = True
+        elif category == "スポーツ":
+            context["sport"] = True
+        elif category == "食":
+            context["food"] = True
+        elif category == "文化":
+            context["culture"] = True
+        elif category == "芸能":
+            context["entertainment"] = True
+        elif category == "特産品":
+            context["goods"] = True
+        elif category == "方言":
+            context["dialect"] = True
+        elif category == "未選択":
+            context["none"] = True
+
+        return context
