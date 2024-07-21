@@ -3,11 +3,6 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
 from .models import Post
 
-# prefectures = {
-#     "hokkaido": "北海道",
-#     "aomori": "青森県",
-#     "miyagi": "宮城県"
-# }
 
 class HomeView(TemplateView):
     template_name = "main/home.html"
