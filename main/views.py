@@ -1,5 +1,6 @@
+from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Post
@@ -75,3 +76,17 @@ class TriviaDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     
     def get_success_url(self):
         return reverse_lazy("main:mypage")
+
+class TriviaLikeView(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        return redirect("main:home")
+    
+    def post(self, request, *args, **kwargs):
+        id = request.POST.get("id")
+        related_post = Post.objects.get(id=id)
+        if self.request.user in related_post.like.all():
+            related_post.like.remove(self.request.user)
+        else:
+            related_post.like.add(self.request.user)
+        return redirect("main:trivia-detail", related_post.pk)
