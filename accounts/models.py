@@ -67,6 +67,9 @@ class User(AbstractBaseUser):
     
     def has_module_perms(self, app_label):
         return self.is_superuser
+    
+    class Meta:
+        db_table = 'users'
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -77,6 +80,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.username
+    
+    class Meta:
+        db_table = 'profiles'
     
 def post_user_created(sender, instance, created, **kwargs):
     if created:
