@@ -32,7 +32,29 @@
         <a href="{% url 'main:trivia-update' object.id %}" class="btn btn-secondary ms-3" tabindex="-1" role="button" aria-disabled="true">編集</a>
         <button type="button" class="btn btn-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal-{{object.id}}">削除</button>
     {% endif %}
+
+    
+    <form method="POST" class="mt-5">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">投稿</button>
+    </form>
+
+    <div class="my-5">
+        <h2>コメント</h2>
+        {% for comment in object.comments.all %}
+            <div class="card my-3">
+                <p class="my-3"><strong>{{ comment.user.profile.username }}</strong>: {{ comment.content }}</p>
+                <p>{{ comment.create_at }}</p>
+            </div>
+        {% empty %}
+            <p>コメントはありません</p>
+        {% endfor %}
+    </div>
+    
+    
 </div>
+
 <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal-{{object.id}}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

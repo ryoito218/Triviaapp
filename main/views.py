@@ -4,7 +4,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Post
-from .forms import PostCreateForm, PostUpdateForm
+from .forms import PostCreateForm, PostUpdateForm, CommentForm
 
 
 class HomeView(TemplateView):
@@ -71,6 +71,23 @@ class TriviaListView(ListView):
 class TriviaDetailView(DetailView):
     template_name = "main/detail.html"
     model = Post
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = CommentForm()
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = self.object
+            comment.user = request.user
+            comment.save()
+            return redirect("main:trivia-detail", pk=self.object.pk)
+        return self.render_to_response(self.get_context_data(form=form))
+
 
 class MyPageView(LoginRequiredMixin, ListView):
     template_name = "main/mypage.html"

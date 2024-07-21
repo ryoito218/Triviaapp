@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 from datetime import datetime
 
 class PostCreateForm(forms.ModelForm):
@@ -42,3 +42,16 @@ class PostUpdateForm(forms.ModelForm):
         obj.update_at = datetime.now()
         obj.save()
         return obj
+
+class CommentForm(forms.ModelForm):
+    
+    content = forms.CharField(label="コメント", widget=forms.Textarea, required=False)
+    
+    class Meta:
+        model = Comment
+        fields = ["content"]
+    
+    def __init__(self, *args, **kwargs):
+        for field in self.base_fields.values():
+            field.widget.attrs.update({"class":"form-control w-75"})
+        super().__init__(*args, **kwargs)

@@ -40,6 +40,8 @@
                 <h5><a href="{% url 'main:trivia-detail' pk=object.id %}">{{object.title}}</a></h5>
             </div>
         </div>
+    {% empty %}
+        <h3>いいねした投稿はありません</h3>
     {% endfor %}
 </div>
 {% endblock %}
