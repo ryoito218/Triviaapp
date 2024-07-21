@@ -46,6 +46,11 @@
         <div class="card my-3">
             <div class="card-body">
                 <h5><a href="{% url 'main:trivia-detail' pk=object.id %}">{{object.title}}</a></h5>
+                {% if request.user in item.like.all %}
+                    <i class="bi bi-heart-fill" role="img" style="color: deeppink;"></i> {{object.like.count}}
+                {% else %}
+                    <i class="bi bi-heart" role="img" style="color: deeppink;"></i> {{object.like.count}}
+                {% endif %}
             </div>
         </div>
     {% empty %}
