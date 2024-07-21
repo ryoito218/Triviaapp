@@ -51,6 +51,7 @@
                 {% else %}
                     <i class="bi bi-heart" role="img" style="color: deeppink;"></i> {{object.like.count}}
                 {% endif %}
+                <p>コメント: {{object.comments.count}}</p>
             </div>
         </div>
     {% empty %}
