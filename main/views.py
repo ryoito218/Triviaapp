@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Post
@@ -63,3 +63,15 @@ class TriviaUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMi
         id = self.kwargs["pk"]
         post = Post.objects.get(id=id)
         return (post.user == self.request.user)
+    
+class TriviaDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    template_name = "main/delete.html"
+
+    def test_func(self):
+        id = self.kwargs["pk"]
+        post = Post.objects.get(id=id)
+        return (post.user == self.request.user)
+    
+    def get_success_url(self):
+        return reverse_lazy("main:mypage")
