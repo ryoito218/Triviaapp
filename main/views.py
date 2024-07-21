@@ -11,20 +11,65 @@ class HomeView(TemplateView):
     template_name = "main/home.html"
 
 class TriviaListView(ListView):
-    template_name = "main/trivia_list.html"
+    model = Post
+    template_name = "main/list.html"
 
     def get_queryset(self):
+        query = super().get_queryset()
+
+        keyword = self.request.GET.get("keyword", None)
+        category = self.request.GET.get("category", None)
         prefecture = self.kwargs["prefecture"]
-        trivias = Post.objects.filter(prefecture=prefecture)
-        return trivias
+
+        query = query.filter(prefecture=prefecture)
+        
+        if keyword:
+            query = query.filter(title__icontains=keyword)
+        
+        if category == "未選択":
+            pass
+        elif category:
+            query = query.filter(category=category)
+        
+        return query
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
         context["prefecture"] = self.kwargs["prefecture"]
+        context["keyword"] = self.request.GET.get("keyword", "")
+
+        category = self.request.GET.get("category", "")
+
+        if category == "地理":
+            context["geography"] = True
+        elif category == "歴史":
+            context["history"] = True
+        elif category == "人物":
+            context["person"] = True
+        elif category == "自然":
+            context["nature"] = True
+        elif category == "伝統":
+            context["tradition"] = True
+        elif category == "スポーツ":
+            context["sport"] = True
+        elif category == "食":
+            context["food"] = True
+        elif category == "文化":
+            context["culture"] = True
+        elif category == "芸能":
+            context["entertainment"] = True
+        elif category == "特産品":
+            context["goods"] = True
+        elif category == "方言":
+            context["dialect"] = True
+        elif category == "未選択":
+            context["none"] = True
+
         return context
     
 class TriviaDetailView(DetailView):
-    template_name = "main/trivia_detail.html"
+    template_name = "main/detail.html"
     model = Post
 
 class MyPageView(LoginRequiredMixin, ListView):
