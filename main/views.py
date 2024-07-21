@@ -24,3 +24,11 @@ class TriviaDetailView(DetailView):
     template_name = "main/trivia_detail.html"
     model = Post
 
+class MyPageView(ListView):
+    template_name = "main/mypage.html"
+    model = Post
+
+    def get_queryset(self):
+        user = self.request.user
+        user_posts = Post.objects.filter(user=user)
+        return user_posts
