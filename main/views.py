@@ -3,6 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.db.models import Count
+
 from .models import Post
 from .forms import PostCreateForm, PostUpdateForm, CommentForm
 
@@ -31,6 +33,14 @@ class TriviaListView(ListView):
         elif category:
             query = query.filter(category=category)
         
+        arrangement = self.request.GET.get("arrangement", 0)
+        if arrangement == "1":
+            query = query.order_by('-create_at')
+        elif arrangement == "2":
+            query = query.annotate(num_likes=Count("like")).order_by('-num_likes')
+        elif arrangement == "3":
+            query = query.annotate(num_comments=Count("comments")).order_by("-num_comments")
+
         return query
     
     def get_context_data(self, **kwargs):
@@ -65,6 +75,14 @@ class TriviaListView(ListView):
             context["dialect"] = True
         elif category == "未選択":
             context["none"] = True
+        
+        arrangement = context['arrangement'] = self.request.GET.get('arrangement', '')
+        if arrangement == "1":
+            context["new"] = True
+        elif arrangement == "2":
+            context["like"] = True
+        elif arrangement == "3":
+            context["comment"] = True
 
         return context
     
@@ -94,10 +112,76 @@ class MyPageView(LoginRequiredMixin, ListView):
     model = Post
 
     def get_queryset(self):
+
+        query = super().get_queryset()
+
         user = self.request.user
-        user_posts = Post.objects.filter(user=user)
-        return user_posts
+
+        query = query.filter(user=user)
+
+        keyword = self.request.GET.get("keyword", None)
+        category = self.request.GET.get("category", None)
+        
+        if keyword:
+            query = query.filter(title__icontains=keyword)
+        
+        if category == "未選択":
+            pass
+        elif category:
+            query = query.filter(category=category)
+        
+        arrangement = self.request.GET.get("arrangement", 0)
+        if arrangement == "1":
+            query = query.order_by('-create_at')
+        elif arrangement == "2":
+            query = query.annotate(num_likes=Count("like")).order_by('-num_likes')
+        elif arrangement == "3":
+            query = query.annotate(num_comments=Count("comments")).order_by("-num_comments")
+
+        return query
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context["keyword"] = self.request.GET.get("keyword", "")
+
+        category = self.request.GET.get("category", "")
+
+        if category == "地理":
+            context["geography"] = True
+        elif category == "歴史":
+            context["history"] = True
+        elif category == "人物":
+            context["person"] = True
+        elif category == "自然":
+            context["nature"] = True
+        elif category == "伝統":
+            context["tradition"] = True
+        elif category == "スポーツ":
+            context["sport"] = True
+        elif category == "食":
+            context["food"] = True
+        elif category == "文化":
+            context["culture"] = True
+        elif category == "芸能":
+            context["entertainment"] = True
+        elif category == "特産品":
+            context["goods"] = True
+        elif category == "方言":
+            context["dialect"] = True
+        elif category == "未選択":
+            context["none"] = True
+        
+        arrangement = context['arrangement'] = self.request.GET.get('arrangement', '')
+        if arrangement == "1":
+            context["new"] = True
+        elif arrangement == "2":
+            context["like"] = True
+        elif arrangement == "3":
+            context["comment"] = True
+
+        return context
+        
 class TriviaCreateView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = "main/create.html"
@@ -172,6 +256,14 @@ class TriviaLikeListView(LoginRequiredMixin, ListView):
             pass
         elif category:
             query = query.filter(category=category)
+
+        arrangement = self.request.GET.get("arrangement", 0)
+        if arrangement == "1":
+            query = query.order_by('-create_at')
+        elif arrangement == "2":
+            query = query.annotate(num_likes=Count("like")).order_by('-num_likes')
+        elif arrangement == "3":
+            query = query.annotate(num_comments=Count("comments")).order_by("-num_comments")
         
         return query
     
@@ -206,5 +298,13 @@ class TriviaLikeListView(LoginRequiredMixin, ListView):
             context["dialect"] = True
         elif category == "未選択":
             context["none"] = True
+        
+        arrangement = context['arrangement'] = self.request.GET.get('arrangement', '')
+        if arrangement == "1":
+            context["new"] = True
+        elif arrangement == "2":
+            context["like"] = True
+        elif arrangement == "3":
+            context["comment"] = True
 
         return context

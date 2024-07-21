@@ -28,6 +28,14 @@
                 </select>
                 <label for="floatingSelect">カテゴリ</label>
             </div>
+            <div class="col form-floating">
+                <select name="arrangement" id="floatingSelect" class="form-select">
+                    <option value="1" {% if new %}selected{% endif %}>最新順</option>
+                    <option value="2" {% if like %}seledted{% endif %}>いいね順</option>
+                    <option value="3" {% if comment %}selected{% endif %}>コメント数</option>
+                </select>
+                <label for="floatingSelect">カテゴリ</label>
+            </div>
         </div>
         <div class="text-center">
             <button class="w-50 btn btn-secondary mb-5">検索</button>
