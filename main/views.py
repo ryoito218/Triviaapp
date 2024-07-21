@@ -1,7 +1,4 @@
-from typing import Any
-from django.forms import BaseModelForm
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 from .models import Post
@@ -28,7 +25,7 @@ class TriviaDetailView(DetailView):
     template_name = "main/trivia_detail.html"
     model = Post
 
-class MyPageView(ListView):
+class MyPageView(LoginRequiredMixin, ListView):
     template_name = "main/mypage.html"
     model = Post
 
@@ -37,7 +34,7 @@ class MyPageView(ListView):
         user_posts = Post.objects.filter(user=user)
         return user_posts
     
-class TriviaCreateView(CreateView):
+class TriviaCreateView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = "main/create.html"
     form_class = PostCreateForm
