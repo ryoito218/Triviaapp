@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #247c7c;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'main:home' %}">APP</a>
+        <a class="navbar-brand" href="{% url 'main:home' %}" style="color: #ffffff">TRIVIA App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,7 +16,7 @@
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="btn btn-danger" href="{% url 'account_logout' %}">Logout</a></li>
                 {% else %}
-                <li class="nav-item"><a class="btn btn-primary" href="{% url 'account_login' %}">Login</a></li>
+                <li class="nav-item"><a class="btn btn-dark" href="{% url 'account_login' %}">Log in</a></li>
                 {% endif %}
             </ul>
         </div>
