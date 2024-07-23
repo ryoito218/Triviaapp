@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container mt-3">
-    <h2>{{object.title}}</h2>
+    <h2><b>{{object.title}}</b></h2>
     {% if user.is_authenticated %}
         <form method="POST" action="{% url 'main:trivia-like' %}" style="display: inline-block;">
             {% csrf_token %}
@@ -22,11 +22,12 @@
     {% else %}
         <i class="bi bi-heart" role="img" style="color: deeppink;"></i> {{object.like.count}}<br>
     {% endif %}
-    <p>{{object.prefecture}}</p>
-    <p>{{object.category}}</p>
+    <p><b>都道府県:</b> {{object.prefecture}}</p>
+    <p><b>カテゴリ:</b> {{object.category}}</p>
+    <hr class="separator">
     <p>{{object.content}}</p>
-    <p>{{object.create_at}}</p>
-    <p>{{object.update_at}}</p>
+    <p>投稿日: {{object.create_at}}</p>
+    <p>更新日: {{object.update_at}}</p>
     
     {% if object.user == request.user %}
         <a href="{% url 'main:trivia-update' object.id %}" class="btn btn-secondary ms-3" tabindex="-1" role="button" aria-disabled="true">編集</a>
@@ -37,11 +38,11 @@
     <form method="POST" class="mt-5">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">投稿</button>
+        <button type="submit" class="button-search">投稿</button>
     </form>
 
     <div class="my-5">
-        <h2>コメント</h2>
+        <h2 style=text-decoration: "underline;">コメント</h2>
         {% for comment in object.comments.all %}
             <div class="card my-3">
                 <p class="my-3"><strong>{{ comment.user.profile.username }}</strong>: {{ comment.content }}</p>

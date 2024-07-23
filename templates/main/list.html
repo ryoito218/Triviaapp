@@ -2,12 +2,12 @@
 
 {% block content %}
 <div class="container my-3">
-    <h2>{{ prefecture }}</h2>
+    <h2><b>{{ prefecture }}</b></h2>
 
     <form action="{% url 'main:trivia-list' prefecture %}" method="GET" class="w-75 mx-auto">
         <p class="form-floating">
             <input id="floatingInput" type="text" class="form-control" name="keyword" value="{{ keyword }}" placeholder="キーワード入力">
-            <label for="floatingInput">Keyword</label>
+            <label for="floatingInput">キーワード</label>
         </p>
 
         <div class="row mb-3">
@@ -31,14 +31,14 @@
             <div class="col form-floating">
                 <select name="arrangement" id="floatingSelect" class="form-select">
                     <option value="1" {% if new %}selected{% endif %}>最新順</option>
-                    <option value="2" {% if like %}seledted{% endif %}>いいね順</option>
+                    <option value="2" {% if like %}seledted{% endif %}>いいね!順</option>
                     <option value="3" {% if comment %}selected{% endif %}>コメント数</option>
                 </select>
                 <label for="floatingSelect">カテゴリ</label>
             </div>
         </div>
         <div class="text-center">
-            <button class="button" style="vertical-align:middle">検索</button>
+            <button class="button-search" >検索</button>
         </div>
     </form>
 

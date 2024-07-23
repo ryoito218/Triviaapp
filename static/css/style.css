@@ -1,8 +1,9 @@
 body {
     font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", "ＭＳ ゴシック" , "MS Gothic", "Noto Sans CJK JP", TakaoPGothic, sans-serif;
+    color: #272343;
 }
 
-.button {
+.button-search {
     display: inline-block;
     padding: 10px 80px;
     font-size: 24px;
@@ -18,9 +19,9 @@ body {
     margin-bottom: 20px;
   }
   
-  .button:hover {background-color: #bae8e8; color: #272343;}
+  .button-search:hover {background-color: #bae8e8; color: #272343;}
   
-  .button:active {
+  .button-search {
     background-color: #247c7c;
     box-shadow: 0 5px #272343;
     transform: translateY(4px);
@@ -78,7 +79,100 @@ body {
     }
 }
 
-.btn-primary {
+.btn-dark {
     background-color: #272343;
     color: #ffffff;
+} 
+
+.btn-list {
+  --color: #272343;
+  position: relative;
+  text-decoration: none;
+  color: var(--color);
+  font-family: "Inter", sans-serif;
+  padding: 0.2rem 0;
+  margin: 10px;
+}
+
+.btn-list::before {
+  --line-width: 115%;
+  --line-height: 1px;
+  --line-easing: ease;
+  --line-transition-duration: 300ms;
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--line-width);
+  height: var(--line-height);
+  transform-origin: right;
+  transform: scaleX(0);
+  background: var(--color);
+  transition: transform var(--line-transition-duration) var(--line-easing);
+  z-index: 1;
+}
+
+.btn-list:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.btn-list:hover span {
+  --deg: -45deg;
+}
+
+.btn-list:hover span::before {
+  transform: rotate(var(--deg));
+}
+
+.btn-list:hover span::after {
+  transform: translateX(-1px) rotate(var(--deg));
+}
+
+.btn-list span {
+  --line-arrow-width: 1px;
+  --line-arrow-height: 6px;
+  --line-arrow-easing: cubic-bezier(0.3, 1.5, 0.5, 1);
+  --line-arrow-transition-duration: 200ms;
+  --line-arrow-transition-delay: 240ms;
+}
+
+.btn-list span::before,
+.btn-list span::after {
+  content: "";
+  position: absolute;
+  right: -18%;
+  bottom: 0px;
+  background: var(--color);
+  transition: transform var(--line-arrow-transition-duration) var(--line-arrow-easing);
+  transition-delay: var(--line-arrow-transition-delay);
+  z-index: 2;
+}
+
+.btn-list span::before {
+  width: var(--line-arrow-width);
+  height: var(--line-arrow-height);
+  transform-origin: 0% 100%;
+  transform: rotate(-90deg);
+}
+
+.btn-list span::after {
+  height: var(--line-arrow-width);
+  width: var(--line-arrow-height);
+  transform-origin: 100% 0%;
+  transform: translateX(-1px) rotate(0deg);
+}
+
+.nav-link {
+  color: #ffffff;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  border: none;
+  border-top: 2px solid #646b8c;
+  margin: 20px 0;
 }

@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container my-3">
-    <h2>いいねリスト</h2>
+    <h2><b>いいねリスト</b></h2>
 
     <form action="{% url 'main:trivia-like-list'%}" method="GET" class="w-75 mx-auto">
         <p class="form-floating">
@@ -38,21 +38,19 @@
             </div>
         </div>
         <div class="text-center">
-            <button class="w-50 btn btn-secondary mb-5">検索</button>
+            <button class="button-search">検索</button>
         </div>
     </form>
 
     {% for object in object_list %}
-        <div class="card my-3">
-            <div class="card-body">
-                <h5><a href="{% url 'main:trivia-detail' pk=object.id %}">{{object.title}}</a></h5>
-                {% if request.user in item.like.all %}
-                    <i class="bi bi-heart-fill" role="img" style="color: deeppink;"></i> {{object.like.count}}
-                {% else %}
-                    <i class="bi bi-heart" role="img" style="color: deeppink;"></i> {{object.like.count}}
-                {% endif %}
+        <div class="card-diy">
+            <h5><a class="card-title" href="{% url 'main:trivia-detail' pk=object.id %}">{{object.title}}</a></h5>
+            {% if request.user in item.like.all %}
+                <i class="bi bi-heart-fill" role="img" style="color: deeppink;"></i> {{object.like.count}}
+            {% else %}
+                <i class="bi bi-heart" role="img" style="color: deeppink;"></i> {{object.like.count}}
+            {% endif %}
                 <p>コメント: {{object.comments.count}}</p>
-            </div>
         </div>
     {% empty %}
         <h3>いいねした投稿はありません</h3>
