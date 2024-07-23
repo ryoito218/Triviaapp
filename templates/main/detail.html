@@ -33,12 +33,13 @@
         <button type="button" class="btn btn-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal-{{object.id}}">削除</button>
     {% endif %}
 
-    
+    {% if user.is_authenticated %}
     <form method="POST" class="mt-5">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">投稿</button>
     </form>
+    {% endif %}
 
     <div class="my-5">
         <h2>コメント</h2>
