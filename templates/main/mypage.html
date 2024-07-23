@@ -4,19 +4,20 @@
 
 {% block content %}
 <div class="container mt-3">
-    <h2>マイページ</h2>
-    <p>{{user.profile.username}}</p>
+    <h2><b>マイページ</b></h2>
+    <p><i>{{user.profile.username}}</i></p>
     <p>{{user.profile.bio}}</p>
+    <hr class="separator">
     <div>
-        <a class="btn btn-primary my-3" href="{% url 'main:trivia-create' %}">投稿</a>
-        <a class="btn btn-secondary my-3" href="{% url 'accounts:update' pk=user.id %}">プロフィール編集</a>
-        <a class="btn btn-danger my-3" href="{% url 'main:trivia-like-list' %}">いいねリスト</a>
+        <a class="btn-list" href="{% url 'main:trivia-create' %}"><span>投稿</span></a>
+        <a class="btn-list" href="{% url 'accounts:update' pk=user.id %}"><span>プロフィール編集</span></a>
+        <a class="btn-list" href="{% url 'main:trivia-like-list' %}"><span>いいね!リスト</span></a>
     </div>
 
     <form action="{% url 'main:mypage' %}" method="GET" class="w-75 mx-auto mt-5">
         <p class="form-floating">
             <input id="floatingInput" type="text" class="form-control" name="keyword" value="{{ keyword }}" placeholder="キーワード入力">
-            <label for="floatingInput">Keyword</label>
+            <label for="floatingInput">キーワード</label>
         </p>
 
         <div class="row mb-3">
@@ -47,21 +48,19 @@
             </div>
         </div>
         <div class="text-center">
-            <button class="w-50 btn btn-secondary mb-5">検索</button>
+            <button class="button-search">検索</button>
         </div>
     </form>
 
     {% for object in object_list %}
-        <div class="card my-3">
-            <div class="card-body">
-                <h5><a href="{% url 'main:trivia-detail' pk=object.id %}">{{object.title}}</a></h5>
-                {% if request.user in item.like.all %}
-                    <i class="bi bi-heart-fill" role="img" style="color: deeppink;"></i> {{object.like.count}}
-                {% else %}
-                    <i class="bi bi-heart" role="img" style="color: deeppink;"></i> {{object.like.count}}
-                {% endif %}
-                <p>コメント: {{object.comments.count}}</p>
-            </div>
+        <div class="card-diy">
+            <h5><a class="card-title" href="{% url 'main:trivia-detail' pk=object.id %}">{{object.title}}</a></h5>
+            {% if request.user in item.like.all %}
+                <i class="bi bi-heart-fill" role="img" style="color: deeppink;"></i> {{object.like.count}}
+            {% else %}
+                <i class="bi bi-heart" role="img" style="color: deeppink;"></i> {{object.like.count}}
+            {% endif %}
+            <p>コメント: {{object.comments.count}}</p>
         </div>
     {% endfor %}
 </div>

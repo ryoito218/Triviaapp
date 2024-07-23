@@ -3,7 +3,7 @@ from .models import Post, Comment
 from datetime import datetime
 
 class PostCreateForm(forms.ModelForm):
-
+    
     content = forms.CharField(label="説明", widget=forms.Textarea, required=False)
 
     class Meta:
