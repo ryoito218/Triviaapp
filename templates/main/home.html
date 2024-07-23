@@ -4,55 +4,121 @@
 
 {% block content %}
 <div class="container mt-3">
-    <h2 class="mt-5">Home</h2>
-    <ul>
-        <li><a href="{% url 'main:trivia-list' prefecture='北海道' %}">北海道</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='青森県' %}">青森県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='岩手県' %}">岩手県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='宮城県' %}">宮城県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='秋田県' %}">秋田県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='山形県' %}">山形県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='福島県' %}">福島県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='茨城県' %}">茨城県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='栃木県' %}">栃木県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='群馬県' %}">群馬県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='埼玉県' %}">埼玉県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='千葉県' %}">千葉県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='東京都' %}">東京都</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='神奈川県' %}">神奈川県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='新潟県' %}">新潟県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='富山県' %}">富山県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='石川県' %}">石川県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='福井県' %}">福井県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='山梨県' %}">山梨県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='長野県' %}">長野県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='岐阜県' %}">岐阜県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='静岡県' %}">静岡県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='愛知県' %}">愛知県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='三重県' %}">三重県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='滋賀県' %}">滋賀県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='京都府' %}">京都府</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='大阪府' %}">大阪府</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='兵庫県' %}">兵庫県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='奈良県' %}">奈良県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='和歌山県' %}">和歌山県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='栃木県' %}">鳥取県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='島根県' %}">島根県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='岡山県' %}">岡山県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='広島県' %}">広島県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='山口県' %}">山口県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='徳島県' %}">徳島県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='香川県' %}">香川県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='愛媛県' %}">愛媛県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='高知県' %}">高知県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='福岡県' %}">福岡県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='滋賀県' %}">佐賀県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='長崎県' %}">長崎県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='熊本県' %}">熊本県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='大分県' %}">大分県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='宮崎県' %}">宮崎県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='鹿児島県' %}">鹿児島県</a></li>
-        <li><a href="{% url 'main:trivia-list' prefecture='沖縄県' %}">沖縄県</a></li>
-    </ul>
+    <h2 class="mt-5">日本地図</h2>
+    <script type="text/javascript" src="https://unpkg.com/japan-map-js@1.0.1/dist/jpmap.min.js"></script>
+    <script type="text/javascript" src="dist/jpmap.min.js"></script>
+    <div id="my-map"></div>
+    <script>
+        var areaLinks = {
+            1: "{% url 'main:trivia-list' prefecture='北海道' %}",
+            2: "{% url 'main:trivia-list' prefecture='青森県' %}",
+            3: "{% url 'main:trivia-list' prefecture='岩手県' %}",
+            4: "{% url 'main:trivia-list' prefecture='宮城県' %}",
+            5: "{% url 'main:trivia-list' prefecture='秋田県' %}",
+            6: "{% url 'main:trivia-list' prefecture='山形県' %}",
+            7: "{% url 'main:trivia-list' prefecture='福島県' %}",
+            8: "{% url 'main:trivia-list' prefecture='茨城県' %}",
+            9: "{% url 'main:trivia-list' prefecture='栃木県' %}",
+            10: "{% url 'main:trivia-list' prefecture='群馬県' %}",
+            11: "{% url 'main:trivia-list' prefecture='埼玉県' %}",
+            12: "{% url 'main:trivia-list' prefecture='千葉県' %}",
+            13: "{% url 'main:trivia-list' prefecture='東京都' %}",
+            14: "{% url 'main:trivia-list' prefecture='神奈川県' %}",
+            15: "{% url 'main:trivia-list' prefecture='新潟県' %}",
+            16: "{% url 'main:trivia-list' prefecture='富山県' %}",
+            17: "{% url 'main:trivia-list' prefecture='石川県' %}",
+            18: "{% url 'main:trivia-list' prefecture='福井県' %}",
+            19: "{% url 'main:trivia-list' prefecture='山梨県' %}",
+            20: "{% url 'main:trivia-list' prefecture='長野県' %}",
+            21: "{% url 'main:trivia-list' prefecture='岐阜県' %}",
+            22: "{% url 'main:trivia-list' prefecture='静岡県' %}",
+            23: "{% url 'main:trivia-list' prefecture='愛知県' %}",
+            24: "{% url 'main:trivia-list' prefecture='三重県' %}",
+            25: "{% url 'main:trivia-list' prefecture='滋賀県' %}",
+            26: "{% url 'main:trivia-list' prefecture='京都府' %}",
+            27: "{% url 'main:trivia-list' prefecture='大阪府' %}",
+            28: "{% url 'main:trivia-list' prefecture='兵庫県' %}",
+            29: "{% url 'main:trivia-list' prefecture='奈良県' %}",
+            30: "{% url 'main:trivia-list' prefecture='和歌山県' %}",
+            31: "{% url 'main:trivia-list' prefecture='鳥取県' %}",
+            32: "{% url 'main:trivia-list' prefecture='島根県' %}",
+            33: "{% url 'main:trivia-list' prefecture='岡山県' %}",
+            34: "{% url 'main:trivia-list' prefecture='広島県' %}",
+            35: "{% url 'main:trivia-list' prefecture='山口県' %}",
+            36: "{% url 'main:trivia-list' prefecture='徳島県' %}",
+            37: "{% url 'main:trivia-list' prefecture='香川県' %}",
+            38: "{% url 'main:trivia-list' prefecture='愛媛県' %}",
+            39: "{% url 'main:trivia-list' prefecture='高知県' %}",
+            40: "{% url 'main:trivia-list' prefecture='福岡県' %}",
+            41: "{% url 'main:trivia-list' prefecture='佐賀県' %}",
+            42: "{% url 'main:trivia-list' prefecture='長崎県' %}",
+            43: "{% url 'main:trivia-list' prefecture='熊本県' %}",
+            44: "{% url 'main:trivia-list' prefecture='大分県' %}",
+            45: "{% url 'main:trivia-list' prefecture='宮崎県' %}",
+            46: "{% url 'main:trivia-list' prefecture='鹿児島県' %}",
+            47: "{% url 'main:trivia-list' prefecture='沖縄県' %}"
+        };
+        
+        var d = new jpmap.japanMap(document.getElementById("my-map"), {
+            areas: [
+            {code: 1, name: "北海道", color: "#7f7eda", hoverColor: "#b3b2ee"},
+            {code: 2, name: "青森", color: "#759ef4", hoverColor: "#98b9ff"},
+            {code: 3, name: "岩手", color: "#759ef4", hoverColor: "#98b9ff"},
+            {code: 4, name: "宮城", color: "#759ef4", hoverColor: "#98b9ff"},
+            {code: 5, name: "秋田", color: "#759ef4", hoverColor: "#98b9ff"},
+            {code: 6, name: "山形", color: "#759ef4", hoverColor: "#98b9ff"},
+            {code: 7, name: "福島", color: "#759ef4", hoverColor: "#98b9ff"},
+            {code: 8, name: "茨城", color: "#7ecfea", hoverColor: "#b7e5f4"},
+            {code: 9, name: "栃木", color: "#7ecfea", hoverColor: "#b7e5f4"},
+            {code: 10, name: "群馬", color: "#7ecfea", hoverColor: "#b7e5f4"},
+            {code: 11, name: "埼玉", color: "#7ecfea", hoverColor: "#b7e5f4"},
+            {code: 12, name: "千葉", color: "#7ecfea", hoverColor: "#b7e5f4"},
+            {code: 13, name: "東京", color: "#7ecfea", hoverColor: "#b7e5f4"},
+            {code: 14, name: "神奈川", color: "#7ecfea", hoverColor: "#b7e5f4"},
+            {code: 15, name: "新潟", color: "#7cdc92", hoverColor: "#aceebb"},
+            {code: 16, name: "富山", color: "#7cdc92", hoverColor: "#aceebb"},
+            {code: 17, name: "石川", color: "#7cdc92", hoverColor: "#aceebb"},
+            {code: 18, name: "福井", color: "#7cdc92", hoverColor: "#aceebb"},
+            {code: 19, name: "山梨", color: "#7cdc92", hoverColor: "#aceebb"},
+            {code: 20, name: "長野", color: "#7cdc92", hoverColor: "#aceebb"},
+            {code: 21, name: "岐阜", color: "#7cdc92", hoverColor: "#aceebb"},
+            {code: 22, name: "静岡", color: "#7cdc92", hoverColor: "#aceebb"},
+            {code: 23, name: "愛知", color: "#7cdc92", hoverColor: "#aceebb"},
+            {code: 24, name: "三重", color: "#ffe966", hoverColor: "#fff19c"},
+            {code: 25, name: "滋賀", color: "#ffe966", hoverColor: "#fff19c"},
+            {code: 26, name: "京都", color: "#ffe966", hoverColor: "#fff19c"},
+            {code: 27, name: "大阪", color: "#ffe966", hoverColor: "#fff19c"},
+            {code: 28, name: "兵庫", color: "#ffe966", hoverColor: "#fff19c"},
+            {code: 29, name: "奈良", color: "#ffe966", hoverColor: "#fff19c"},
+            {code: 30, name: "和歌山", color: "#ffe966", hoverColor: "#fff19c"},
+            {code: 31, name: "鳥取", color: "#ffcc66", hoverColor: "#ffe0a3"},
+            {code: 32, name: "島根", color: "#ffcc66", hoverColor: "#ffe0a3"},
+            {code: 33, name: "岡山", color: "#ffcc66", hoverColor: "#ffe0a3"},
+            {code: 34, name: "広島", color: "#ffcc66", hoverColor: "#ffe0a3"},
+            {code: 35, name: "山口", color: "#ffcc66", hoverColor: "#ffe0a3"},
+            {code: 36, name: "徳島", color: "#fb9466", hoverColor: "#ffbb9c"},
+            {code: 37, name: "香川", color: "#fb9466", hoverColor: "#ffbb9c"},
+            {code: 38, name: "愛媛", color: "#fb9466", hoverColor: "#ffbb9c"},
+            {code: 39, name: "高知", color: "#fb9466", hoverColor: "#ffbb9c"},
+            {code: 40, name: "福岡", color: "#ff9999", hoverColor: "#ffbdbd"},
+            {code: 41, name: "佐賀", color: "#ff9999", hoverColor: "#ffbdbd"},
+            {code: 42, name: "長崎", color: "#ff9999", hoverColor: "#ffbdbd"},
+            {code: 43, name: "熊本", color: "#ff9999", hoverColor: "#ffbdbd"},
+            {code: 44, name: "大分", color: "#ff9999", hoverColor: "#ffbdbd"},
+            {code: 45, name: "宮崎", color: "#ff9999", hoverColor: "#ffbdbd"},
+            {code: 46, name: "鹿児島", color: "#ff9999", hoverColor: "#ffbdbd"},
+            {code: 47, name: "沖縄", color: "#eb98ff", hoverColor: "#f5c9ff"}
+          ],
+        
+          showsPrefectureName: true,
+          width: 1000,
+          movesIslands: true,
+          borderLineColor: "#000000",
+          lang: 'ja',
+          onSelect: function(data){
+             location.href = areaLinks[data.area.code];
+          }
+        });
+    </script>
 </div>
 {% endblock %}
