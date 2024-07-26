@@ -7,7 +7,9 @@
     <h2 class="mt-5">日本地図</h2>
     <script type="text/javascript" src="https://unpkg.com/japan-map-js@1.0.1/dist/jpmap.min.js"></script>
     <script type="text/javascript" src="dist/jpmap.min.js"></script>
-    <div id="my-map"></div>
+    <div id="my-map-container" class="d-flex justify-content-center">
+        <div id="my-map"></div>
+    </div>
     <script>
         var areaLinks = {
             1: "{% url 'main:trivia-list' prefecture='北海道' %}",
@@ -119,6 +121,12 @@
              location.href = areaLinks[data.area.code];
           }
         });
+
+        var canvas = document.querySelector("#my-map canvas");
+        if (canvas) {
+            canvas.width = 1400; 
+            canvas.height = 1000;  
+        }
     </script>
 </div>
 {% endblock %}

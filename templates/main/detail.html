@@ -26,8 +26,8 @@
     <p><b>カテゴリ:</b> {{object.category}}</p>
     <hr class="separator">
     <p>{{object.content}}</p>
-    <p>投稿日: {{object.create_at}}</p>
-    <p>更新日: {{object.update_at}}</p>
+    <p class="date-holder">投稿日: {{object.create_at}}</p>
+    <p class="date-holder">更新日: {{object.update_at}}</p>
     
     {% if object.user == request.user %}
         <a href="{% url 'main:trivia-update' object.id %}" class="btn btn-secondary ms-3" tabindex="-1" role="button" aria-disabled="true">編集</a>

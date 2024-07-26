@@ -3,6 +3,39 @@ body {
     color: #272343;
 }
 
+.background-container {
+  background-color: #247c7c;
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  padding: 20px; /* Optional: padding around the content */
+  border-radius: 10px; /* Optional: rounded corners */
+  color: white; /* Optional: text color to contrast with the background */
+}
+
+.button-form {
+  display: inline-block;
+  padding: 10px 60px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #247c7c;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #272343;
+  margin-bottom: 20px;
+}
+
+.button-form:hover {background-color: #bae8e8; color: #272343;}
+
+.button-form {
+  background-color: #247c7c;
+  box-shadow: 0 5px #272343;
+  transform: translateY(4px);
+}
+
 .button-search {
     display: inline-block;
     padding: 10px 80px;
@@ -161,6 +194,26 @@ body {
   width: var(--line-arrow-height);
   transform-origin: 100% 0%;
   transform: translateX(-1px) rotate(0deg);
+}
+
+.btn-secondary {
+  background-color: #247c7c;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #bae8e8;
+  color: #272343;
+}
+
+.btn-danger:hover {
+  background-color: #f0b5bb;
+  color: #272343;
+}
+
+.date-holder {
+  font-size: 0.7em;
+  text-align: end;
 }
 
 .nav-link {
