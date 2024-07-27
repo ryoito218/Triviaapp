@@ -68,9 +68,9 @@ class Post(models.Model):
         ('沖縄県', '沖縄県'),
     ]
 
-    title = models.CharField(max_length=20)
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
-    prefecture = models.CharField(max_length=20, choices=PREFECTURE_CHOICES)
+    title = models.CharField(verbose_name="タイトル", max_length=20)
+    category = models.CharField(verbose_name="カテゴリ", max_length=20, choices=CATEGORY_CHOICES)
+    prefecture = models.CharField(verbose_name="都道府県", max_length=20, choices=PREFECTURE_CHOICES)
     content = models.TextField(blank=True, null=True)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -87,7 +87,7 @@ class Post(models.Model):
         ordering = ["-create_at"]
 
 class Comment(models.Model):
-    content = models.TextField()
+    content = models.TextField(verbose_name="コメント")
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)

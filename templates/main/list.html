@@ -43,6 +43,14 @@
             </div>
         </form>
     </div>
+
+        </div>
+        <div class="text-center">
+            <button class="button-search" >検索</button>
+            <a class="button-search" href="{% url 'main:trivia-create' %}">投稿</a>
+        </div>
+    </form>
+
     {% for object in object_list %}
         <div class="card-diy">
             <h5><a class="card-title" href="{% url 'main:trivia-detail' pk=object.id %}">{{object.title}}</a></h5>
