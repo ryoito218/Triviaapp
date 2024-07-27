@@ -2,40 +2,48 @@
 
 {% block content %}
 <div class="container my-3">
-    <h2><b>{{ prefecture }}</b></h2>
+    <div class="background">
+        <h2><b>{{ prefecture }}</b></h2>
 
-    <form action="{% url 'main:trivia-list' prefecture %}" method="GET" class="w-75 mx-auto">
-        <p class="form-floating">
-            <input id="floatingInput" type="text" class="form-control" name="keyword" value="{{ keyword }}" placeholder="キーワード入力">
-            <label for="floatingInput">キーワード</label>
-        </p>
+        <form action="{% url 'main:trivia-list' prefecture %}" method="GET" class="w-75 mx-auto">
+            <p class="form-floating">
+                <input id="floatingInput" type="text" class="form-control" name="keyword" value="{{ keyword }}" placeholder="キーワード入力">
+                <label for="floatingInput">キーワード</label>
+            </p>
 
-        <div class="row mb-3">
-            <div class="col form-floating">
-                <select name="category" id="floatingSelect" class="form-select">
-                    <option value="未選択" {% if none %}selected{% endif %}>Unselected (未選択)</option>
-                    <option value="地理" {% if geography %}selected{% endif %}>Geography (地理)</option>
-                    <option value="歴史" {% if history %}selected{% endif %}>History (歴史)</option>
-                    <option value="人物" {% if person %}selected{% endif %}>Person (人物)</option>
-                    <option value="自然" {% if nature %}selected{% endif %}>Nature (自然)</option>
-                    <option value="伝統" {% if tradition %}selected{% endif %}>Tradition (伝統)</option>
-                    <option value="スポーツ" {% if sport %}selected{% endif %}>Sport (スポーツ)</option>
-                    <option value="食文化" {% if food %}selected{% endif %}>Food (食)</option>
-                    <option value="文化" {% if culture %}selected{% endif %}>Culture (文化)</option>
-                    <option value="芸能" {% if entertainment %}selected{% endif %}>Entertainment (芸能)</option>
-                    <option value="特産品" {% if goods %}selected{% endif %}>Goods (特産品)</option>
-                    <option value="方言" {% if dialect %}selected{% endif %}>Dialect (方言)</option>
-                </select>
-                <label for="floatingSelect">カテゴリ</label>
+            <div class="row mb-3">
+                <div class="col form-floating">
+                    <select name="category" id="floatingSelect" class="form-select">
+                        <option value="未選択" {% if none %}selected{% endif %}>Unselected (未選択)</option>
+                        <option value="地理" {% if geography %}selected{% endif %}>Geography (地理)</option>
+                        <option value="歴史" {% if history %}selected{% endif %}>History (歴史)</option>
+                        <option value="人物" {% if person %}selected{% endif %}>Person (人物)</option>
+                        <option value="自然" {% if nature %}selected{% endif %}>Nature (自然)</option>
+                        <option value="伝統" {% if tradition %}selected{% endif %}>Tradition (伝統)</option>
+                        <option value="スポーツ" {% if sport %}selected{% endif %}>Sport (スポーツ)</option>
+                        <option value="食文化" {% if food %}selected{% endif %}>Food (食)</option>
+                        <option value="文化" {% if culture %}selected{% endif %}>Culture (文化)</option>
+                        <option value="芸能" {% if entertainment %}selected{% endif %}>Entertainment (芸能)</option>
+                        <option value="特産品" {% if goods %}selected{% endif %}>Goods (特産品)</option>
+                        <option value="方言" {% if dialect %}selected{% endif %}>Dialect (方言)</option>
+                    </select>
+                    <label for="floatingSelect">カテゴリ</label>
+                </div>
+                <div class="col form-floating">
+                    <select name="arrangement" id="floatingSelect" class="form-select">
+                        <option value="1" {% if new %}selected{% endif %}>最新順</option>
+                        <option value="2" {% if like %}seledted{% endif %}>いいね!順</option>
+                        <option value="3" {% if comment %}selected{% endif %}>コメント数</option>
+                    </select>
+                    <label for="floatingSelect">カテゴリ</label>
+                </div>
             </div>
-            <div class="col form-floating">
-                <select name="arrangement" id="floatingSelect" class="form-select">
-                    <option value="1" {% if new %}selected{% endif %}>最新順</option>
-                    <option value="2" {% if like %}seledted{% endif %}>いいね!順</option>
-                    <option value="3" {% if comment %}selected{% endif %}>コメント数</option>
-                </select>
-                <label for="floatingSelect">カテゴリ</label>
+            <div class="text-center">
+                <button class="button-search" >検索</button>
             </div>
+        </form>
+    </div>
+
         </div>
         <div class="text-center">
             <button class="button-search" >検索</button>

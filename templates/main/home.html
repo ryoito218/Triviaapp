@@ -3,11 +3,21 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="container mt-3">
-    <h2 class="mt-5">日本地図</h2>
+<header class="bgimg">
+    <div>
+      <span class="introduction"><b>日本で遊び場所に困ったことはありますか？</b></span><br>
+      <span class="introduction"><b>日本に関する豆知識を共有したり、学びたいと思いませんか？</b></span><br><br>
+      <span class="introduction"><b>ここでは、お互いに日本について話し合い、<br>盛り上がる場を提供します！</b></span><br><br>
+      <div class="text-center"><p><a id="start-button"><b>日本地図へ！</b></a></p></div>
+    </div>
+</header>
+<div class="container mt-3" id="map-section">
+    <div class="title"><h1>気になる都道府県を選択してください</h1></div>
     <script type="text/javascript" src="https://unpkg.com/japan-map-js@1.0.1/dist/jpmap.min.js"></script>
     <script type="text/javascript" src="dist/jpmap.min.js"></script>
-    <div id="my-map"></div>
+    <div id="my-map-container" class="d-flex justify-content-center">
+        <div id="my-map"></div>
+    </div>
     <script>
         var areaLinks = {
             1: "{% url 'main:trivia-list' prefecture='北海道' %}",
@@ -111,7 +121,7 @@
           ],
         
           showsPrefectureName: true,
-          width: 1000,
+          width: 1400,
           movesIslands: true,
           borderLineColor: "#000000",
           lang: 'ja',
@@ -119,6 +129,12 @@
              location.href = areaLinks[data.area.code];
           }
         });
+
+        document.getElementById('start-button').addEventListener('click', function(e) {
+          e.preventDefault();
+          document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        
     </script>
 </div>
 {% endblock %}

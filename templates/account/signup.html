@@ -14,8 +14,10 @@
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
-        <button class=" btn btn-primary my-3 form-control" type="submit">{% trans "Sign Up" %} &raquo;</button>
-        <p>すでにアカウントをお持ちの方は <a href="{{ login_url }}">こちら</a></p>
+        <div class="text-center">
+            <button class="button-form" type="submit">{% trans "Sign Up" %} &raquo;</button>
+            <p>すでにアカウントをお持ちの方は <a href="{{ login_url }}">こちら</a></p>
+        </div>
     </form>
 </div>
 {% endblock %}

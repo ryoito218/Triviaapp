@@ -11,7 +11,9 @@
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="form-control btn btn-primary">更新</button>
+            <div class="text-center">
+                <button class="button-search" type="submit" class="form-control btn btn-primary">更新</button>
+            </div>
         </form>
     </div>
 </div>

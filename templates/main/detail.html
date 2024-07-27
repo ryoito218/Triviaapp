@@ -26,8 +26,8 @@
     <p><b>カテゴリ:</b> {{object.category}}</p>
     <hr class="separator">
     <p>{{object.content}}</p>
-    <p>投稿日: {{object.create_at}}</p>
-    <p>更新日: {{object.update_at}}</p>
+    <p class="date-holder">投稿日: {{object.create_at}}</p>
+    <p class="date-holder">更新日: {{object.update_at}}</p>
     
     {% if object.user == request.user %}
         <a href="{% url 'main:trivia-update' object.id %}" class="btn btn-secondary ms-3" tabindex="-1" role="button" aria-disabled="true">編集</a>
@@ -47,7 +47,7 @@
         {% for comment in object.comments.all %}
             <div class="card my-3">
                 <p class="my-3"><strong>{{ comment.user.profile.username }}</strong>: {{ comment.content }}</p>
-                <p>{{ comment.create_at }}</p>
+                <p class="date-holder">投稿日: {{ comment.create_at }}</p>
             </div>
         {% empty %}
             <p>コメントはありません</p>
