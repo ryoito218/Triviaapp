@@ -47,7 +47,7 @@
         {% for comment in object.comments.all %}
             <div class="card my-3">
                 <p class="my-3"><strong>{{ comment.user.profile.username }}</strong>: {{ comment.content }}</p>
-                <p>{{ comment.create_at }}</p>
+                <p class="date-holder">投稿日: {{ comment.create_at }}</p>
             </div>
         {% empty %}
             <p>コメントはありません</p>

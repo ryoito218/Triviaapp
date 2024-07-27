@@ -12,6 +12,51 @@ body {
   color: white; /* Optional: text color to contrast with the background */
 }
 
+.bgimg {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.bgimg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("images/japan-wallpaper.png") center center / cover no-repeat;
+  opacity: 0.7; /* Adjust the opacity value as needed */
+  filter: blur(8px);
+  z-index: -1; /* Ensure the pseudo-element is behind the content */
+}
+
+.introduction {
+  font-size: 4vw; /* Responsive size based on viewport width */
+}
+
+@media (min-width: 600px) {
+  .introduction {
+    font-size: 2em;
+  }
+}
+
+@media (min-width: 768px) {
+  .introduction {
+    font-size: 2.5em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .introduction {
+    font-size: 3em;
+  }
+}
+
 .button-form {
   display: inline-block;
   padding: 10px 60px;
@@ -59,6 +104,29 @@ body {
     box-shadow: 0 5px #272343;
     transform: translateY(4px);
   }
+
+#start-button {
+    display: inline-block;
+    padding: 20px 90px;
+    font-size: 48px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #272343;
+    margin-bottom: 20px;
+}
+
+#start-button:hover {background-color: #bae8e8; color: #272343;}
+  
+#start-button {
+  background-color: #247c7c;
+  box-shadow: 0 5px #272343;
+  transform: translateY(4px);
+}
 
 .card-title {
     color: #272343;
@@ -229,3 +297,24 @@ body {
   border-top: 2px solid #646b8c;
   margin: 20px 0;
 }
+
+.title h1 {
+  text-align: center;
+      font-size:30px; font-weight:300; color:#222; letter-spacing:1px;
+      text-transform: uppercase;
+      font-weight: bold;
+      display: grid;
+      grid-template-columns: 1fr max-content 1fr;
+      grid-template-rows: 27px 0;
+      grid-gap: 20px;
+      align-items: center;
+  }
+  
+  .title h1:after,.title h1:before {
+      content: " ";
+      display: block;
+      border-bottom: 2px solid #247c7c;
+      border-top: 2px solid #247c7c;
+      height: 5px;
+    background-color:#ffffff;
+  }

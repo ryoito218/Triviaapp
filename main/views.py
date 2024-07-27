@@ -96,7 +96,6 @@ class TriviaDetailView(DetailView):
         context["form"] = CommentForm()
         return context
     
-    @login_required
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = CommentForm(request.POST)
