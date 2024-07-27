@@ -29,7 +29,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("images/japan-wallpaper.png") center center / cover no-repeat;
+  background: url("images/japan-wallpaper.jpg") center center / cover no-repeat;
   opacity: 0.7; /* Adjust the opacity value as needed */
   filter: blur(8px);
   z-index: -1; /* Ensure the pseudo-element is behind the content */
@@ -386,156 +386,156 @@ body {
 }
 
 #群馬県 {
-  background: url("images/gunma-wallpaper.png");
+  background: url("images/gunma-wallpaper.jpg");
 }
 
 #埼玉県 {
-  background: url("images/saitama-wallpaper.png");
+  background: url("images/saitama-wallpaper.jpg");
 }
 
 #千葉県 {
-  background: url("images/chiba-wallpaper.png");
+  background: url("images/chiba-wallpaper.jpg");
 }
 
 #東京都 {
-  background: url("images/tokyo-wallpaper.png");
+  background: url("images/tokyo-wallpaper.jpg");
 }
 
 #神奈川県 {
-  background: url("images/kanagawa-wallpaper.png");
+  background: url("images/kanagawa-wallpaper.jpg");
 }
 
 #新潟県 {
-  background: url("images/niigata-wallpaper.png");
+  background: url("images/niigata-wallpaper.jpg");
 }
 
 #富山県 {
-  background: url("images/toyama-wallpaper.png");
+  background: url("images/toyama-wallpaper.jpg");
 }
 
 #石川県 {
-  background: url("images/ishikawa-wallpaper.png");
+  background: url("images/ishikawa-wallpaper.jpg");
 }
 
 #福井県 {
-  background: url("images/fukui-wallpaper.png");
+  background: url("images/fukui-wallpaper.jpg");
 }
 
 #山梨県 {
-  background: url("images/yamanashi-wallpaper.png");
+  background: url("images/yamanashi-wallpaper.jpg");
 }
 
 #長野県 {
-  background: url("images/nagano-wallpaper.png");
+  background: url("images/nagano-wallpaper.jpg");
 }
 
 #岐阜県 {
-  background: url("images/gifu-wallpaper.png");
+  background: url("images/gifu-wallpaper.jpg");
 }
 
 #静岡県 {
-  background: url("images/shizuoka-wallpaper.png");
+  background: url("images/shizuoka-wallpaper.jpg");
 }
 
 #愛知県 {
-  background: url("images/aichi-wallpaper.png");
+  background: url("images/aichi-wallpaper.jpg");
 }
 
 #三重県 {
-  background: url("images/mie-wallpaper.png");
+  background: url("images/mie-wallpaper.jpg");
 }
 
 #滋賀県 {
-  background: url("images/shiga-wallpaper.png");
+  background: url("images/shiga-wallpaper.jpg");
 }
 
 #京都府 {
-  background: url("images/kyoto-wallpaper.png");
+  background: url("images/kyoto-wallpaper.jpg");
 }
 
 #大阪府 {
-  background: url("images/osaka-wallpaper.png");
+  background: url("images/osaka-wallpaper.jpg");
 }
 
 #兵庫県 {
-  background: url("images/hyogo-wallpaper.png");
+  background: url("images/hyogo-wallpaper.jpg");
 }
 
 #奈良県 {
-  background: url("images/nara-wallpaper.png");
+  background: url("images/nara-wallpaper.jpg");
 }
 
 #和歌山県 {
-  background: url("images/wakayama-wallpaper.png");
+  background: url("images/wakayama-wallpaper.jpg");
 }
 
 #鳥取県 {
-  background: url("images/tottori-wallpaper.png");
+  background: url("images/tottori-wallpaper.jpg");
 }
 
 #島根県 {
-  background: url("images/shimane-wallpaper.png");
+  background: url("images/shimane-wallpaper.jpg");
 }
 
 
 #岡山県 {
-  background: url("images/ohkayama-wallpaper.png");
+  background: url("images/ohkayama-wallpaper.jpg");
 }
 
 #広島県 {
-  background: url("images/hiroshima-wallpaper.png");
+  background: url("images/hiroshima-wallpaper.jpg");
 }
 
 #山口県 {
-  background: url("images/yamaguchi-wallpaper.png");
+  background: url("images/yamaguchi-wallpaper.jpg");
 }
 
 
 #徳島県 {
-  background: url("images/tokushima-wallpaper.png");
+  background: url("images/tokushima-wallpaper.jpg");
 }
 
 #香川県 {
-  background: url("images/kagawa-wallpaper.png");
+  background: url("images/kagawa-wallpaper.jpg");
 }
 
 #愛媛県 {
-  background: url("images/ehime-wallpaper.png");
+  background: url("images/ehime-wallpaper.jpg");
 }
 
 #高知県 {
-  background: url("images/kochi-wallpaper.png");
+  background: url("images/kochi-wallpaper.jpg");
 }
 
 
 #福岡県 {
-  background: url("images/fukuoka-wallpaper.png");
+  background: url("images/fukuoka-wallpaper.jpg");
 }
 
 #佐賀県 {
-  background: url("images/saga-wallpaper.png");
+  background: url("images/saga-wallpaper.jpg");
 }
 
 #長崎県 {
-  background: url("images/nagasaki-wallpaper.png");
+  background: url("images/nagasaki-wallpaper.jpg");
 }
 
 #熊本県 {
-  background: url("images/kumamoto-wallpaper.png");
+  background: url("images/kumamoto-wallpaper.jpg");
 }
 
 #大分県 {
-  background: url("images/oita-wallpaper.png");
+  background: url("images/oita-wallpaper.jpg");
 }
 
 #宮崎県 {
-  background: url("images/miyazaki-wallpaper.png");
+  background: url("images/miyazaki-wallpaper.jpg");
 }
 
 #鹿児島県 {
-  background: url("images/kagoshima-wallpaper.png");
+  background: url("images/kagoshima-wallpaper.jpg");
 }
 
 #沖縄県 {
-  background: url("images/okinawa-wallpaper.png");
+  background: url("images/okinawa-wallpaper.jpg");
 }
