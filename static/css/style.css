@@ -319,46 +319,70 @@ body {
     background-color:#ffffff;
   }
 
+.title-container {
+  display: flex;
+  justify-content: center; /* Centers the child horizontally */
+}
+
 .prefecture-title {
+  position: relative; /* Required for the pseudo-element positioning */
+  display: inline-block;
+  font-size: 5em;
   text-align: center;
-  font-size: 4em;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adjust the values as needed */
+  padding: 10px 100px;
+  color: #ffffff;
+  text-shadow: 
+  3px 3px 3px #272343,   /* bottom-right shadow */
+  -3px 3px 3px #272343,  /* bottom-left shadow */
+  3px -3px 3px #272343,  /* top-right shadow */
+  -3px -3px 3px #272343, /* top-left shadow */
+  3px 0 3px #272343,     /* right shadow */
+  -3px 0 3px #272343,    /* left shadow */
+  0 3px 3px #272343,     /* bottom shadow */
+  0 -3px 3px #272343;    /* top shadow */
+}
+
+.background-img { /* Stretches the image to cover the element */
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
 }
 
 #北海道 {
-  background: url("images/hokkaido-wallpaper.png");
+  background: url("images/hokkaido-wallpaper.jpg");
 }
 
 #青森県 {
-  background: url("images/aomori-wallpaper.png");
+  background: url("images/aomori-wallpaper.jpg");
 }
 
 #岩手県 {
-  background: url("images/iwate-wallpaper.png");
+  background: url("images/iwate-wallpaper.jpg");
 }
 
 #宮城県 {
-  background: url("images/miyagi-wallpaper.png");
+  background: url("images/miyagi-wallpaper.jpg");
+  
 }
 
 #秋田県 {
-  background: url("images/akita-wallpaper.png");
+  background: url("images/akita-wallpaper.jpg");
 }
 
 #山形県 {
-  background: url("images/yamagata-wallpaper.png");
+  background: url("images/yamagata-wallpaper.jpg");
 }
 
 #福島県 {
-  background: url("images/fukushima-wallpaper.png");
+  background: url("images/fukushima-wallpaper.jpg");
 }
 
 #茨城県 {
-  background: url("images/ibaraki-wallpaper.png");
+  background: url("images/ibaraki-wallpaper.jpg");
 }
 
 #栃木県 {
-  background: url("images/tochigi-wallpaper.png");
+  background: url("images/tochigi-wallpaper.jpg");
 }
 
 #群馬県 {

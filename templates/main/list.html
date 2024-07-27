@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id={{prefecture}} class="prefecture-img">
-    <br><h2 class="prefecture-title"><b>{{ prefecture }}</b></h2>
+<div id={{prefecture}}  class="background-img">
+    <br><div class="title-container"><div class="prefecture-title"><p><b>{{ prefecture }}</b></p></div></div>
     <form action="{% url 'main:trivia-list' prefecture %}" method="GET" class="w-75 mx-auto">
         <p class="form-floating">
             <input id="floatingInput" type="text" class="form-control" name="keyword" value="{{ keyword }}" placeholder="キーワード入力">
             <label for="floatingInput">キーワード</label>
         </p>
-
         <div class="row mb-3">
             <div class="col form-floating">
                 <select name="category" id="floatingSelect" class="form-select">
@@ -37,13 +36,13 @@
                 <label for="floatingSelect">カテゴリ</label>
             </div>
         </div>
-        
             <div class="text-center">
                 <button class="button-search" >検索</button>
                 <a class="button-search" href="{% url 'main:trivia-create' %}">投稿</a>
             </div>
         </form>
-
+</div>
+<div class="container my-3">
     {% for object in object_list %}
         <div class="card-diy">
             <h5><a class="card-title" href="{% url 'main:trivia-detail' pk=object.id %}">{{object.title}}</a></h5>
